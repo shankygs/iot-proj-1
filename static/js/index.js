@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-  document.querySelector('#iDefine').onclick = function(){
+  document.querySelector('#sub-menu').style.visibility='hidden';
+
+  document.querySelector('#mDefine').onclick = function(){
     document.querySelector('#ldefine').style.color='red';
 
     document.querySelector('#mConnect').style.visibility='hidden';
@@ -9,7 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#mAnalyze').style.visibility='hidden';
     document.querySelector('#mMonetize').style.visibility='hidden';
 
-    var divDefine = document.createElement('div');
+    document.querySelector('#sub-menu').style.visibility='visible';
+
+    /*var divDefine = document.createElement('div');
     divDefine.setAttribute('class', 'row');
     divDefine.style.marginTop = "30px";
     divDefine.style.marginLeft = "100px";
@@ -67,14 +71,11 @@ document.addEventListener('DOMContentLoaded', function() {
     divDefineMenu4.appendChild(lblDefineMenu4);
 
     document.body.appendChild(divDefine);
+    */
 
   };
 });
 
-//function OnDefineClick()
-//{
-//  alert("Someone clicked on Define");
-//}
 
 function OnConnectClick()
 {
