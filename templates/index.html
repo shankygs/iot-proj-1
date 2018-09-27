@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> Wipro Connected Cloud Platform </title>
+    <title> IoT Connected Cloud Platform </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href={{url_for('static', filename="css/main.css")}}>
     <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
   </head>
@@ -13,92 +14,254 @@
         <img src="{{url_for('static', filename='images/Logo.png')}}">
         <h1> IoT Connected Devices Platform </h1>
     </div>
-    <nav id="site-menu">
-      <div class="container">
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Contacts</a></li>
-        </ul>
-      </div>
-    </nav>
-    <div id="main-menu">
-      <div class="row">
-        <div class="main-menu-item" id="mDefine">
-          <div id="iDefine"> <img src="{{url_for('static', filename='images/Define.png')}}"></div>
-          <div id="ldefine"><p> Define </p></div>
+    <div>
+      <nav id="site-menu">
+        <div class="container">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contacts</a></li>
+          </ul>
         </div>
-        <div class="main-menu-item" id="mConnect" >
-          <div id="iConnect"> <img src="{{url_for('static', filename='images/Connect.png')}}"></div>
-          <div id="lConnect"><p> Connect </p></div>
+      </nav>
+     </div>
+     <div>
+      <div id="main-menu">
+        <div class="row">
+          <div class="main-menu-item" id="mDefine">
+            <div id="iDefine"> <img src="{{url_for('static', filename='images/Define.png')}}"></div>
+            <div id="ldefine"><p> Define </p></div>
+          </div>
+          <div class="main-menu-item" id="mConnect" >
+            <div id="iConnect"> <img src="{{url_for('static', filename='images/Connect.png')}}"></div>
+            <div id="lConnect"><p> Connect </p></div>
+          </div>
+          <div class="main-menu-item" id="mMonitor" >
+            <div id="iMonitor"> <img src="{{url_for('static', filename='images/Monitor.jpeg')}}"></div>
+            <div id="lMonitor"><p> Monitor </p></div>
+          </div>
         </div>
-        <div class="main-menu-item" id="mMonitor" >
-          <div id="iMonitor"> <img src="{{url_for('static', filename='images/Monitor.jpeg')}}"></div>
-          <div id="lMonitor"><p> Monitor </p></div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="main-menu-item" id="mManage">
-          <div class="holder" id="iManage"> <img src="{{url_for('static', filename='images/Manage.jpeg')}}"> </div>
-          <div id="lManage"><p> Manage </p></div>
-        </div>
-        <div  class="main-menu-item" id="mAnalyze">
-          <div class="holder" id="iAnalyze"> <img src="{{url_for('static', filename='images/Analyze.jpeg')}}"> </div>
-          <div id="lAnalyze"><p> Analyze </p></div>
-        </div>
-        <div  class="main-menu-item" id="mMonetize">
-          <div id="iMonetize"> <img src="{{url_for('static', filename='images/Monetize.png')}}"> </div>
-          <div id="lMonetize"><p> Monetize </p></div>
-        </div>
-      </div>
-    </div>
-      <!--
-    <div id="sub-menu">
-      <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do  </p>
-    </div>
+        <div class="row">
+          <div class="main-menu-item" id="mManage">
+            <div id="iManage"> <img src="{{url_for('static', filename='images/Manage.jpeg')}}"> </div>
+            <div id="lManage"><p> Manage </p></div>
+          </div>
+          <div  class="main-menu-item" id="mAnalyze">
+            <div id="iAnalyze"> <img src="{{url_for('static', filename='images/Analyze.jpg')}}"> </div>
+            <div id="lAnalyze"><p> Analyze </p></div>
+          </div>
+          <div  class="main-menu-item" id="mMonetize">
+            <div id="iMonetize"> <img src="{{url_for('static', filename='images/Monetize.png')}}"> </div>
+            <div id="lMonetize"><p> Monetize </p></div>
+          </div>
+         </div>
+       </div>
+        <div id="sub-menu">
+          <div class="row">
+            <div class="sub-menu-item" id="smEnterprise" data-toggle="modal" data-target="#EnterpriseModal">
+              <div id="siEnterprise"> <img src="{{url_for('static', filename='images/Define/Enterprise.png')}}"></div>
+              <div id="slEnterprise"><p> Enterprise </p></div>
+            </div>
+            <div class="sub-menu-item" id="smSite" data-toggle="modal" data-target="#SiteModal">
+              <div id="siSite"> <img src="{{url_for('static', filename='images/Define/Site.jpeg')}}"></div>
+              <div id="slSite"><p> Site </p></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="sub-menu-item" id="smDeviceType" data-toggle="modal" data-target="#devTypeModal" >
+              <div id="siDeviceType"> <img src="{{url_for('static', filename='images/Define/DeviceType.jpeg')}}"></div>
+              <div id="slDeviceType"><p> DeviceType </p></div>
+            </div>
+            <div class="sub-menu-item" id="smDevice" data-toggle="modal" data-target="#devModal">
+              <div id="siDevice"> <img src="{{url_for('static', filename='images/Define/Device.png')}}"> </div>
+              <div id="slDevice"><p> Device </p></div>
+            </div>
 
-  <div class="container" margin-top="30px" margin-left="50px">
-      <div class="main-menu-row row">
-        <div id="mDefine" class="main-menu-col column">
-          <div class="holder" id="iDefine"> <img src="{{url_for('static', filename='images/Define.png')}}"> </div>
-          <div id="ldefine"><p align="center" padding-bottom="2px"> Define </p></div>
-        </div>
-        <div id="mConnect" class="main-menu-col column">
-          <div class="holder" id="iConnect"> <img src="{{url_for('static', filename='images/Connect.png')}}"> </div>
-          <div id="lConnect"><p align="center" padding-bottom="2px"> Connect </p></div>
-        </div>
-        <div id="mMonitor" class="main-menu-col column">
-          <div class="holder" id="iMonitor"> <img src="{{url_for('static', filename='images/Monitor.jpeg')}}"> </div>
-          <div id="lMonitor"><p align="center" padding-bottom="2px"> Monitor </p></div>
+            <!-- Enterprise Add Data Modal -->
+            <div id="EnterpriseModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-header modal-hdr">
+                  <h2 class="modal-title">Add Enterprise Data</h2>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!--<div class="modal-body modal-bdy"> -->
+                  <form class="modal-content" action="{{url_for('process_ent_data')}}" method="post">
+                    <!--  <i class="fa fa-user prefix grey-text"></i> -->
+                    <div class="input-wrapper">
+                      <input type="text" id="EntID" placeholder="Enterprise ID" name="EntID">
+                      <label for="EntID" class="fa fa-user input-icon"></label>
+                    </div>
+                    <input type="text" id="EntName" placeholder="Enterprise Name" name="EntName">
+                    <input type="text" id="EntCity" placeholder="City" name="EntCity">
+                    <input type="text" id="EntRegion" placeholder="Region" name="EntRegion">
+                    <input type="text" id="EntCountry" placeholder="Country" name="EntCountry">
+                    <input type="text" id="EntZip" placeholder="ZIP" name="EntZip">
+                    <input type="text" id="EntContactName" placeholder="Contact Name" name="EntContactName">
+                    <input type="text" id="EntContactEmail" placeholder="Contact Email" name="EntContactEmail">
+                    <input type="text" id="EntContactPhone" placeholder="Contact Phone" name="EntContactPhone">
+                    <input type="submit" value="Add">
+                  </form>
+                <!--</div> -->
+                <div class="modal-footer modal-ftr">
+                  <p> Enterprise Data </p>
+                </div>
+              </div>
+            </div> <!--Enterprise Modal -->
+
+            <!-- Site Add Data Modal -->
+            <div id="SiteModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-header modal-hdr">
+                  <h2 class="modal-title">Add Site Data</h2>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!--<div class="modal-body modal-bdy"> -->
+                  <form class="modal-content" action="{{url_for('process_site_data')}}" method="post">
+                    <!--  <i class="fa fa-user prefix grey-text"></i> -->
+                    <input list="EntList" id="EntSiteName" name="EntName">
+                    <datalist id="EntList">
+                      <option value="ABC Corp">
+                      <option value="DEF Corp">
+                      <option value="GHI Corp">
+                      <option value="JKL Corp">
+                      <option value="MNO Corp">
+                    </datalist>
+                    <div class="input-wrapper">
+                      <input type="text" id="SiteID" placeholder="Site ID" name="SiteID">
+                      <label for="SiteID" class="fa fa-user input-icon"></label>
+                    </div>
+                    <input type="text" id="SiteName" placeholder="Site Name" name="SiteName">
+                    <input type="text" id="SiteCity" placeholder="City" name="SiteCity">
+                    <input type="text" id="SiteArea" placeholder="Area" name="SiteArea">
+                    <input type="text" id="SiteCountry" placeholder="Country" name="SiteCountry">
+                    <input type="text" id="SiteZip" placeholder="ZIP" name="SiteZip">
+                    <input type="text" id="SiteContactName" placeholder="Contact Name" name="SiteContactName">
+                    <input type="text" id="SiteContactEmail" placeholder="Contact Email" name="SiteContactEmail">
+                    <input type="text" id="SiteContactPhone" placeholder="Contact Phone" name="SiteContactPhone">
+                    <input type="submit" value="Add">
+                  </form>
+                <!--</div> -->
+                <div class="modal-footer modal-ftr">
+                  <p> Site Data </p>
+                </div>
+              </div>
+            </div> <!--Site Modal -->
+
+            <!-- Device Type Add Data Modal -->
+            <div id="devTypeModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-header modal-hdr">
+                  <h2 class="modal-title">Add Device Type Data</h2>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!--<div class="modal-body modal-bdy"> -->
+                  <form class="modal-content" action="{{url_for('process_devType_data')}}" method="post">
+                    <!--  <i class="fa fa-user prefix grey-text"></i> -->
+                    <input list="EntList" id="EntDTName" name="EntName" placeholder="Enterprise Name">
+                    <datalist id="EntList">
+                      <option value="ABC Corp">
+                      <option value="DEF Corp">
+                      <option value="GHI Corp">
+                      <option value="JKL Corp">
+                      <option value="MNO Corp">
+                    </datalist>
+
+                    <input list="SiteList" id="SiteDTList" name="SiteName" placeholder="Site Name">
+                    <datalist id="SiteList">
+                      <option value="Site 1">
+                      <option value="Site 2">
+                      <option value="Site 3">
+                      <option value="Site 4">
+                      <option value="Site 5">
+                    </datalist>
+
+                    <div class="input-wrapper">
+                      <input type="text" id="devTypeID" placeholder="Device Type ID" name="devTypeID">
+                      <label for="devTypeID" class="fa fa-user input-icon"></label>
+                    </div>
+                    <input type="text" id="devTypeName" placeholder="Device Type Name" name="devTypeName">
+                    <input type="text" id="GroupID" placeholder="Group ID" name="GroupID">
+                    <input type="text" id="GroupName" placeholder="Group Name" name="GroupName">
+                    <input type="text" id="HLevel"   placeholder="Hierarchy Level" name="HLevel">
+                    <input type="text" id="ParName1" placeholder="Parameter Name #1" name="ParName1">
+                    <input type="text" id="ParName2" placeholder="Parameter Name #2" name="ParName2">
+                    <input type="text" id="ParName3" placeholder="Parameter Name #3" name="ParName3">
+                    <input type="text" id="ParName4" placeholder="Parameter Name #4" name="ParName4">
+                    <input type="text" id="ParName5" placeholder="Parameter Name #5" name="ParName5">
+                    <input type="text" id="ParName6" placeholder="Parameter Name #6" name="ParName6">
+                    <input type="text" id="ParName7" placeholder="Parameter Name #7" name="ParName7">
+                    <input type="text" id="ParName8" placeholder="Parameter Name #8" name="ParName8">
+                    <input type="text" id="ParName9" placeholder="Parameter Name #9" name="ParName9">
+                    <input type="text" id="ParName10" placeholder="Parameter Name #10" name="ParName10">
+                    <input type="submit" value="Add">
+                  </form>
+                <!--</div> -->
+                <div class="modal-footer modal-ftr">
+                  <p> Device Type Data </p>
+                </div>
+              </div>
+            </div> <!--Device Type Modal -->
+
+            <!-- Device Type Add Data Modal -->
+            <div id="devModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-header modal-hdr">
+                  <h2 class="modal-title">Add Device Type Data</h2>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!--<div class="modal-body modal-bdy"> -->
+                  <form class="modal-content" action="{{url_for('process_dev_data')}}" method="post">
+                    <!--  <i class="fa fa-user prefix grey-text"></i> -->
+                    <input list="EntList" id="EntDevList" name="EntName" placeholder="Enterprise Name">
+                    <datalist id="EntList">
+                      <option value="ABC Corp">
+                      <option value="DEF Corp">
+                      <option value="GHI Corp">
+                      <option value="JKL Corp">
+                      <option value="MNO Corp">
+                    </datalist>
+
+                    <input list="SiteList" id="SiteDevList" name="SiteName" placeholder="Site Name">
+                    <datalist id="SiteList">
+                      <option value="Site 1">
+                      <option value="Site 2">
+                      <option value="Site 3">
+                      <option value="Site 4">
+                      <option value="Site 5">
+                    </datalist>
+
+                    <input list="TypeList" id="TypeDevList" name="TypeName" placeholder="Type Name">
+                    <datalist id="TypeList">
+                      <option value="TYpe 1">
+                      <option value="Type 2">
+                      <option value="Type 3">
+                      <option value="Type 4">
+                      <option value="Type 5">
+                    </datalist>
+
+                    <div class="input-wrapper">
+                      <input type="text" id="devID" placeholder="Device ID" name="devID">
+                      <label for="devTypeID" class="fa fa-user input-icon"></label>
+                    </div>
+                    <input type="text" id="devName" placeholder="Device Name" name="devName">
+                    <input type="text" id="devParentName" placeholder="Device Parent Name" name="devParentName">
+                    <input type="submit" value="Add">
+                  </form>
+                <!--</div> -->
+                <div class="modal-footer modal-ftr">
+                  <p> Device Data </p>
+                </div>
+              </div>
+            </div> <!--Device  Modal -->
+          </div>
         </div>
       </div>
-      <div class="main-menu-row row">
-        <div id="mManage" class="main-menu-col column">
-          <div class="holder" id="iManage"> <img src="{{url_for('static', filename='images/Manage.jpeg')}}"> </div>
-          <div id="lManage"><p align="center" padding-bottom="2px"> Manage </p></div>
-        </div>
-        <div id="mAnalyze" class="main-menu-col column">
-          <div class="holder" id="iAnalyze"> <img src="{{url_for('static', filename='images/Analyze.jpeg')}}"> </div>
-          <div id="lAnalyze"><p align="center" padding-bottom="2px"> Analyze </p></div>
-        </div>
-        <div id="mMonetize" class="main-menu-col column">
-          <div class="holder" id="iMonetize"> <img src="{{url_for('static', filename='images/Monetize.png')}}"> </div>
-          <div id="lMonetize"><p align="center" padding-bottom="2px"> Monetize </p></div>
-        </div>
+      <div>
+      <div class="divclr"></div>
+      <footer id="footer-main">
+        <p> Copyright &copy 2017 ABC Corporation </p>
+      </footer>
       </div>
-    </div>
-   <div class="row" id="DefineMenu">
-    </div>
-    <div id="ConnectMenu">
-    </div>
-    <div id="MonitorMenu">
-    </div>
-    <div id="ManageMenu"></div>
-    <div id="AnalyzeMenu"></div>
-    <div id="MonetizeMenu"></div> -->
-    <footer id="footer-main">
-      <p> Copyright &copy 2017 Wipro Corporation </p>
-    </footer>
   </body>
 </html>
