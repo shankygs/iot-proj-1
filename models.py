@@ -10,6 +10,7 @@ class Enterprise(db.Model):
     EntRegion   = db.Column(db.String(50))
     EntCountry  = db.Column(db.String(50))
     EntZip      = db.Column(db.String(50))
+    sites       = db.relationship('Site', backref='enterprise' , lazy=True)
 
     def __init__(self, EntID, EntName, EntCity, EntRegion, EntCountry, EntZip):
         self.EntID       = EntID
@@ -22,12 +23,13 @@ class Enterprise(db.Model):
 class Site(db.Model):
     __tablename__ = 'sites'
     SiteID      = db.Column(db.Integer, primary_key=True)
-    EntID       = db.Column(db.Integer)
+    EntID       = db.Column(db.Integer, db.ForeignKey('enterprises.EntID'), nullable=False)
     SiteName    = db.Column(db.String(50))
     SiteCountry = db.Column(db.String(50))
     SiteCity    = db.Column(db.String(50))
     SiteArea    = db.Column(db.String(50))
     SiteZip     = db.Column(db.String(50))
+
 
     def __init__(self, SiteID, EntID, SiteName, SiteCountry, SiteCity, SiteArea, SiteZip):
         self.SiteID     = SiteID
