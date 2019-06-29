@@ -1,4 +1,5 @@
 from flask import Flask, redirect, url_for, request, render_template
+import requests
 import os
 
 from models import *
@@ -6,18 +7,18 @@ from models import *
 app = Flask(__name__)
 
 POSTGRES = {
-    'user': 'Shruthi',
+    'user': 'SHANKY',
     'pw': 'root123',
-    'db': 'demo',
+    'db': 'SHANKY',
     'host': 'localhost',
     'port': '5432',
 }
-app.config.from_object(os.environ['APP_SETTINGS'])
+#app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
 %(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 db.init_app(app)
-db.create_all()
+#db.create_all()
 
 @app.route('/')
 def index():
@@ -38,6 +39,13 @@ def process_ent_data():
 	print("Enterprise Country: " + EntCountry)
 	print("Enterprise ZIP:     " + EntZip)
 	return "Received Enterprise from page"
+
+@app.route('/get_enterprises_data', methods=["GET"] )
+def get_enterprises_data():
+    resp = requests.request('GET', 'http://127.0.0.1:5000/get/enterprise')
+    print(resp.status_code)
+    return(resp.json())
+    #return "Received request from page"
 
 @app.route('/process_site_data', methods=["POST"] )
 def process_site_data():
