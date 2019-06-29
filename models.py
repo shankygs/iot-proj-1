@@ -1,16 +1,51 @@
+from flask import Flask, redirect, url_for, request, render_template, json
+from flask import jsonify
+import os
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.inspection import inspect
+from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
-class Enterprise(db.Model):
+class Serializer(object):
+
+    def serialize(self):
+        return {c: getattr(self, c) for c in inspect(self).attrs.keys()}
+
+    @staticmethod
+    def serialize_list(l):
+        return [m.serialize() for m in l]
+
+
+class EUser(db.Model, Serializer):
+    __tablename__ = 'eusers'
+    EntUserID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    EntUserName = db.Column(db.String(64))
+    EntUserEmail = db.Column(db.String(120))
+    EntUserPassHash = db.Column(db.String(128))
+
+    def __init__(self, EntUserName,EntUserEmail):
+        #self.EntUserID       = EntUserID
+        self.EntUserName     = EntUserName
+        self.EntUserEmail    = EntUserEmail
+        #self.EntUserPassHash = EntUserPassHash
+
+    def set_password(self,password):
+        self.EntUserPassHash = generate_password_hash(password)
+
+    def check_password(self,password):
+        return check_password_hash(self.EntUserPassHash, password)
+
+class Enterprise(db.Model, Serializer):
     __tablename__ = 'enterprises'
+
     EntID       = db.Column(db.Integer, primary_key=True)
     EntName     = db.Column(db.String(50))
     EntCity     = db.Column(db.String(50))
     EntRegion   = db.Column(db.String(50))
     EntCountry  = db.Column(db.String(50))
     EntZip      = db.Column(db.String(50))
-    sites       = db.relationship('Site', backref='enterprise' , lazy=True)
+#    sites       = db.relationship('Site', backref='enterprise' , lazy=True)
 
     def __init__(self, EntID, EntName, EntCity, EntRegion, EntCountry, EntZip):
         self.EntID       = EntID
@@ -20,7 +55,11 @@ class Enterprise(db.Model):
         self.EntCountry  = EntCountry
         self.EntZip      = EntZip
 
-class Site(db.Model):
+    def serialize(self):
+        d = Serializer.serialize(self)
+        return d
+
+class Site(db.Model, Serializer):
     __tablename__ = 'sites'
     SiteID      = db.Column(db.Integer, primary_key=True)
     EntID       = db.Column(db.Integer, db.ForeignKey('enterprises.EntID'), nullable=False)
@@ -40,7 +79,7 @@ class Site(db.Model):
         self.SiteArea   = SiteArea
         self.SiteZip    = SiteZip
 
-class DevType(db.Model):
+class DevType(db.Model, Serializer):
     __tablename__ = "devicetypes"
     TypeID      = db.Column(db.Integer, primary_key=True)
     TypeName    = db.Column(db.String(50))
@@ -75,23 +114,24 @@ class DevType(db.Model):
         self.ParName9    = ParName9
         self.ParName10   = ParName10
 
-    class Device(db.Model):
-        __tablename__="devices"
-        DeviceID    = db.Column(db.Integer, primary_key=True)
-        DevName     = db.Column(db.String(50))
-        DevEntID    = db.Column(db.Integer)
-        DevSiteID   = db.Column(db.Integer)
-        DevTypeID   = db.Column(db.Integer)
-        DevParentID = db.Column(db.Integer)
 
-        def __init__(self, DeviceID, DevName, DevEntID, DevSiteID, DevTypeID, DevParentID):
-            self.DeviceID    = DeviceID
-            self.DevName     = DevName
-            self.DevEntID    = DevEntID
-            self.DevSiteID   = DevSiteID
-            self.DevSiteID   = DevSiteID
-            self.DevParentID = DevParentID
 
+class Device(db.Model, Serializer):
+    __tablename__= "devices"
+    DeviceID    = db.Column(db.Integer, primary_key=True)
+    DevName     = db.Column(db.String(50))
+    DevEntID    = db.Column(db.Integer)
+    DevSiteID   = db.Column(db.Integer)
+    DevTypeID   = db.Column(db.Integer)
+    DevParentID = db.Column(db.Integer)
+
+    def __init__(self, DeviceID, DevName, DevEntID, DevSiteID, DevTypeID, DevParentID):
+        self.DeviceID    = DeviceID
+        self.DevName     = DevName
+        self.DevEntID    = DevEntID
+        self.DevSiteID   = DevSiteID
+        self.DevSiteID   = DevSiteID
+        self.DevParentID = DevParentID
 
 def __repr__(self):
         return '<id {}>'.format(self.id)
